@@ -89,6 +89,10 @@ public final class ClientSmoke {
                         }
                         float fruits = DietCapability.get(mc.player).orElseThrow().getValue("fruits");
                         int groups = DietGroups.getGroups(mc.level).size();
+                        var tracker = DietCapability.get(mc.player).orElseThrow();
+                        System.out.println("[clientsmoke] groups=" + groups + " suite=" + tracker.getSuite()
+                            + " suites=" + com.illusivesoulworks.diet.common.data.suite.DietSuites.getSuite(mc.level, tracker.getSuite()).isPresent()
+                            + " values=" + tracker.getValues());
                         if (groups < 5) {
                             fail("client has " + groups + " food groups, expected 5");
                         }
@@ -132,6 +136,7 @@ public final class ClientSmoke {
 
     public static void fail(String why) {
         System.err.println("Smoke test failed: " + why);
+        System.out.println("[clientsmoke] FAILED: " + why);
         System.err.flush();
         Runtime.getRuntime().halt(1);
     }
