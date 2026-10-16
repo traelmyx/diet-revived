@@ -61,7 +61,7 @@ public final class DietTests {
         player.setItemInHand(InteractionHand.MAIN_HAND, apple.copy());
         player.startUsingItem(InteractionHand.MAIN_HAND);
         for (int i = 0; i < 40 && player.isUsingItem(); i++) {
-            player.tick();
+            player.doTick();
         }
         float fruits = diet.getValue("fruits");
         helper.assertTrue(fruits > 0.0f, "fruits did not go up after an apple: " + fruits);

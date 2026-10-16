@@ -60,6 +60,7 @@ dependencies {
 		implementation "net.fabricmc:fabric-loader:${project.property('loader_version')}"
 		implementation "net.fabricmc.fabric-api:fabric-api:${project.property('deps.fabric_api')}"
 	}
+	compileOnly 'com.google.code.findbugs:jsr305:3.0.2'
 	productionRuntimeMods "net.fabricmc.fabric-api:fabric-api:${project.property('deps.fabric_api')}"
 	productionRuntimeMods "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${project.property('deps.forgeconfigapiport')}"
 }
