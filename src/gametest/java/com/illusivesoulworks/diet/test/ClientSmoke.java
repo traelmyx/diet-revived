@@ -13,6 +13,7 @@ import net.minecraft.world.level.levelgen.WorldOptions;
 import net.minecraft.world.level.levelgen.presets.WorldPresets;
 
 import com.illusivesoulworks.diet.common.capability.DietCapability;
+import com.illusivesoulworks.diet.common.data.group.DietGroups;
 import com.illusivesoulworks.diet.client.screen.DietScreen;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.world.item.ItemStack;
@@ -87,6 +88,10 @@ public final class ClientSmoke {
                             fail("diet screen did not stay open");
                         }
                         float fruits = DietCapability.get(mc.player).orElseThrow().getValue("fruits");
+                        int groups = DietGroups.getGroups(mc.level).size();
+                        if (groups < 5) {
+                            fail("client has " + groups + " food groups, expected 5");
+                        }
                         if (fruits <= 0) {
                             fail("client never received the diet sync (fruits = " + fruits + ")");
                         }
@@ -106,7 +111,7 @@ public final class ClientSmoke {
     }
 
     private static void createWorld(Minecraft mc) {
-        LevelSettings settings = new LevelSettings("smoke", GameType.CREATIVE, false, Difficulty.PEACEFUL, true, new GameRules(), WorldDataConfiguration.DEFAULT);
+        LevelSettings settings = new LevelSettings("smoke", GameType.SURVIVAL, false, Difficulty.PEACEFUL, true, new GameRules(), WorldDataConfiguration.DEFAULT);
         mc.createWorldOpenFlows().createFreshLevel("smoke", settings, new WorldOptions(0L, false, false),
             registries -> registries.registryOrThrow(Registries.WORLD_PRESET).getHolderOrThrow(WorldPresets.FLAT).value().createWorldDimensions(),
             mc.screen);

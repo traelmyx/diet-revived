@@ -20,6 +20,7 @@ package com.illusivesoulworks.diet.common.capability;
 
 import com.illusivesoulworks.diet.DietConstants;
 import com.illusivesoulworks.diet.api.type.IDietTracker;
+import com.illusivesoulworks.diet.common.DietEvents;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -55,6 +56,8 @@ public class DietCapabilityEventsListener {
   public static void playerLoggedIn(final PlayerEvent.PlayerLoggedInEvent evt) {
 
     if (evt.getEntity() instanceof ServerPlayer player) {
+      // the datapack sync on join runs before the play connection exists, so send groups and suites again here
+      DietEvents.syncDatapack(player);
       DietCapability.get(player).ifPresent(IDietTracker::sync);
     }
   }

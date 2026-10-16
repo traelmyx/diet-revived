@@ -23,4 +23,5 @@ jobs:
             build/libs/
             run/gametest/logs/
             run/smoke/screenshots/
+            run/smoke/logs/
           if-no-files-found: ignore
