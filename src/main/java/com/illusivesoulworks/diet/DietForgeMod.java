@@ -18,6 +18,7 @@
 
 package com.illusivesoulworks.diet;
 
+//? if neoforge {
 import com.illusivesoulworks.diet.client.DietKeys;
 import com.illusivesoulworks.diet.common.DietEvents;
 import com.illusivesoulworks.diet.common.capability.DietCapability;
@@ -73,6 +74,7 @@ public class DietForgeMod {
   }
 
   public DietForgeMod(IEventBus eventBus, ModContainer container) {
+    com.illusivesoulworks.diet.common.DietApiImpl.naturalRegeneration = NATURAL_REGEN;
     eventBus.addListener(this::setup);
     eventBus.addListener(this::process);
     eventBus.addListener(this::modifyAttributes);
@@ -130,3 +132,4 @@ public class DietForgeMod {
     }
   }
 }
+//?}

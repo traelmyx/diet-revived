@@ -17,6 +17,7 @@
 
 package com.illusivesoulworks.diet.platform.services;
 
+//? if neoforge {
 import com.illusivesoulworks.diet.api.type.IDietTracker;
 import com.illusivesoulworks.diet.common.capability.DietCapability;
 import com.illusivesoulworks.diet.common.data.group.DietGroups;
@@ -41,3 +42,4 @@ public class ForgeCapabilityService implements ICapabilityService {
     return new DietSuites();
   }
 }
+//?}

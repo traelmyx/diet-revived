@@ -18,6 +18,7 @@
 
 package com.illusivesoulworks.diet.common.capability;
 
+//? if neoforge {
 import com.illusivesoulworks.diet.DietConstants;
 import com.illusivesoulworks.diet.api.type.IDietTracker;
 import com.illusivesoulworks.diet.common.DietEvents;
@@ -92,3 +93,4 @@ public class DietCapabilityEventsListener {
     }
   }
 }
+//?}

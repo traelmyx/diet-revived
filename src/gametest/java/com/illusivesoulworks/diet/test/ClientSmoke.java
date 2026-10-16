@@ -12,7 +12,7 @@ import net.minecraft.world.level.WorldDataConfiguration;
 import net.minecraft.world.level.levelgen.WorldOptions;
 import net.minecraft.world.level.levelgen.presets.WorldPresets;
 
-import com.illusivesoulworks.diet.common.capability.DietCapability;
+import com.illusivesoulworks.diet.platform.Services;
 import com.illusivesoulworks.diet.common.data.group.DietGroups;
 import com.illusivesoulworks.diet.client.screen.DietScreen;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
@@ -88,9 +88,9 @@ public final class ClientSmoke {
                         if (!(mc.screen instanceof DietScreen)) {
                             fail("diet screen did not stay open");
                         }
-                        float fruits = DietCapability.get(mc.player).orElseThrow().getValue("fruits");
+                        float fruits = Services.CAPABILITY.get(mc.player).orElseThrow().getValue("fruits");
                         int groups = DietGroups.getGroups(mc.level).size();
-                        var tracker = DietCapability.get(mc.player).orElseThrow();
+                        var tracker = Services.CAPABILITY.get(mc.player).orElseThrow();
                         System.out.println("[clientsmoke] groups=" + groups + " suite=" + tracker.getSuite()
                             + " suites=" + com.illusivesoulworks.diet.common.data.suite.DietSuites.getSuite(mc.level, tracker.getSuite()).isPresent()
                             + " values=" + tracker.getValues());
@@ -127,7 +127,7 @@ public final class ClientSmoke {
         var server = mc.getSingleplayerServer();
         server.execute(() -> {
             var player = server.getPlayerList().getPlayers().get(0);
-            var diet = DietCapability.get(player).orElseThrow();
+            var diet = Services.CAPABILITY.get(player).orElseThrow();
             // Diet only counts food that actually changed the hunger bar
             player.getFoodData().setFoodLevel(6);
             for (var item : new net.minecraft.world.item.Item[] {Items.APPLE, Items.APPLE, Items.APPLE, Items.APPLE, Items.APPLE,

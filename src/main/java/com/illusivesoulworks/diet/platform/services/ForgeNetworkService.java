@@ -17,6 +17,7 @@
 
 package com.illusivesoulworks.diet.platform.services;
 
+//? if neoforge {
 import com.illusivesoulworks.diet.common.data.effect.DietEffectsInfo;
 import com.illusivesoulworks.diet.common.network.DietForgeNetwork;
 import com.illusivesoulworks.diet.common.network.server.SPacketActivate;
@@ -64,3 +65,4 @@ public class ForgeNetworkService implements INetworkService {
     DietForgeNetwork.send(player, new SPacketSuites(suites));
   }
 }
+//?}

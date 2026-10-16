@@ -17,6 +17,7 @@
 
 package com.illusivesoulworks.diet.platform.services;
 
+//? if neoforge {
 import net.minecraft.core.Holder;
 import com.illusivesoulworks.diet.DietCommonMod;
 import com.illusivesoulworks.diet.common.util.DietOverride;
@@ -123,3 +124,4 @@ public class ForgeRegistryService implements IRegistryService {
     return ModIdArgument.modIdArgument();
   }
 }
+//?}

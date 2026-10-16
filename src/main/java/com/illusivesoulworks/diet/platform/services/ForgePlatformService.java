@@ -17,6 +17,7 @@
 
 package com.illusivesoulworks.diet.platform.services;
 
+//? if neoforge {
 import java.nio.file.Path;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLLoader;
@@ -44,3 +45,4 @@ public class ForgePlatformService implements IPlatformService {
     return FMLPaths.GAMEDIR.get();
   }
 }
+//?}

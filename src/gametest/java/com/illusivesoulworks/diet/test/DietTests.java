@@ -3,7 +3,7 @@ package com.illusivesoulworks.diet.test;
 import com.illusivesoulworks.diet.api.DietApi;
 import com.illusivesoulworks.diet.api.type.IDietGroup;
 import com.illusivesoulworks.diet.api.type.IDietTracker;
-import com.illusivesoulworks.diet.common.capability.DietCapability;
+import com.illusivesoulworks.diet.platform.Services;
 import com.illusivesoulworks.diet.common.capability.PlayerDietTracker;
 import com.illusivesoulworks.diet.common.data.group.DietGroups;
 import net.minecraft.core.BlockPos;
@@ -18,22 +18,15 @@ import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
-import net.neoforged.neoforge.event.EventHooks;
-import net.neoforged.neoforge.gametest.GameTestHolder;
-import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@GameTestHolder(DietTests.MOD_ID)
-@PrefixGameTestTemplate(false)
-public class DietTests {
-    public static final String MOD_ID = "diet_gametest";
+public final class DietTests {
 
     private static IDietTracker fresh(ServerPlayer player) {
-        IDietTracker diet = DietCapability.get(player).orElseThrow();
+        IDietTracker diet = Services.CAPABILITY.get(player).orElseThrow();
         diet.initSuite();
         for (String group : diet.getValues().keySet()) {
             diet.setValue(group, 0.0f);
@@ -41,7 +34,6 @@ public class DietTests {
         return diet;
     }
 
-    @GameTest(template = "empty")
     public static void defaultGroupsLoaded(GameTestHelper helper) {
         Set<String> names = DietGroups.getGroups(helper.getLevel()).stream().map(IDietGroup::getName).collect(Collectors.toSet());
         helper.assertTrue(names.containsAll(Set.of("fruits", "grains", "proteins", "sugars", "vegetables")), "default groups missing: " + names);
@@ -53,7 +45,6 @@ public class DietTests {
         helper.succeed();
     }
 
-    @GameTest(template = "empty")
     public static void generatedFromRecipes(GameTestHelper helper) {
         // pumpkin pie has no tag of its own; Diet works out its groups from the recipe
         ServerPlayer player = helper.makeMockServerPlayerInLevel();
@@ -62,13 +53,16 @@ public class DietTests {
         helper.succeed();
     }
 
-    @GameTest(template = "empty")
     public static void eatingRaisesGroup(GameTestHelper helper) {
         ServerPlayer player = helper.makeMockServerPlayerInLevel();
         IDietTracker diet = fresh(player);
         ItemStack apple = new ItemStack(Items.APPLE);
-        // the same event vanilla fires when the player finishes eating
-        EventHooks.onItemUseFinish(player, apple.copy(), 0, ItemStack.EMPTY);
+        // eat it for real: hold it, start using it and let the use timer run out
+        player.setItemInHand(InteractionHand.MAIN_HAND, apple.copy());
+        player.startUsingItem(InteractionHand.MAIN_HAND);
+        for (int i = 0; i < 40 && player.isUsingItem(); i++) {
+            player.tick();
+        }
         float fruits = diet.getValue("fruits");
         helper.assertTrue(fruits > 0.0f, "fruits did not go up after an apple: " + fruits);
         helper.assertTrue(diet.getValue("proteins") == 0.0f, "proteins went up after an apple");
@@ -76,7 +70,6 @@ public class DietTests {
         helper.succeed();
     }
 
-    @GameTest(template = "empty")
     public static void eatingCakeBlockCounts(GameTestHelper helper) {
         ServerPlayer player = helper.makeMockServerPlayerInLevel();
         player.setGameMode(GameType.SURVIVAL);
@@ -91,7 +84,6 @@ public class DietTests {
         helper.succeed();
     }
 
-    @GameTest(template = "empty")
     public static void hungerDecaysGroups(GameTestHelper helper) throws Exception {
         // mock players always report creative, which skips decay in tick(), so call it directly
         ServerPlayer player = helper.makeMockServerPlayerInLevel();
@@ -106,7 +98,6 @@ public class DietTests {
         helper.succeed();
     }
 
-    @GameTest(template = "empty")
     public static void balancedDietGivesBonus(GameTestHelper helper) {
         ServerPlayer player = helper.makeMockServerPlayerInLevel();
         IDietTracker diet = fresh(player);
@@ -129,7 +120,6 @@ public class DietTests {
         helper.succeed();
     }
 
-    @GameTest(template = "empty")
     public static void saveAndLoad(GameTestHelper helper) {
         ServerPlayer player = helper.makeMockServerPlayerInLevel();
         IDietTracker diet = fresh(player);
@@ -146,7 +136,6 @@ public class DietTests {
         helper.succeed();
     }
 
-    @GameTest(template = "empty")
     public static void deathPenalty(GameTestHelper helper) {
         ServerPlayer original = helper.makeMockServerPlayerInLevel();
         fresh(original).setValue("fruits", 0.8f);

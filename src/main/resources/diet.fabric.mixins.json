@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.illusivesoulworks.diet.mixin.fabric",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "FabricMixinLivingEntity",
+    "FabricMixinPlayer"
+  ],
+  "client": [
+    "AccessorContainerScreen"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

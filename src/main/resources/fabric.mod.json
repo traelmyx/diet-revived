@@ -1,0 +1,28 @@
+{
+	"schemaVersion": 1,
+	"id": "${id}",
+	"version": "${version}",
+	"name": "${name}",
+	"description": "Food groups and nutrition. Based on Diet by C4.",
+	"authors": ["traelmyx"],
+	"contributors": ["C4 (original mod)"],
+	"contact": {
+		"sources": "https://github.com/traelmyx/diet-revived",
+		"issues": "https://github.com/traelmyx/diet-revived/issues"
+	},
+	"license": "LGPL-3.0-or-later",
+	"icon": "diet_icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": ["com.illusivesoulworks.diet.fabric.DietFabricMod"],
+		"client": ["com.illusivesoulworks.diet.fabric.DietFabricClientMod"]
+	},
+	"mixins": ["diet.mixins.json", "diet.fabric.mixins.json"],
+	"depends": {
+		"fabricloader": ">=0.16.0",
+		"fabric-api": "*",
+		"forgeconfigapiport": "*",
+		"minecraft": "${mc_dep}",
+		"java": ">=${java}"
+	}
+}

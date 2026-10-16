@@ -1,0 +1,14 @@
+{
+	"schemaVersion": 1,
+	"id": "${id}_gametest",
+	"version": "${version}",
+	"name": "Diet Tests",
+	"environment": "*",
+	"entrypoints": {
+		"fabric-gametest": ["com.illusivesoulworks.diet.test.fabric.FabricGameTests"],
+		"client": ["com.illusivesoulworks.diet.test.fabric.FabricClientSmoke"]
+	},
+	"depends": {
+		"${id}": "*"
+	}
+}

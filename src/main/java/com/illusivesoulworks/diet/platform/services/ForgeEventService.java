@@ -17,6 +17,7 @@
 
 package com.illusivesoulworks.diet.platform.services;
 
+//? if neoforge {
 import com.illusivesoulworks.diet.api.DietEvent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -39,3 +40,4 @@ public class ForgeEventService implements IEventService {
     return NeoForge.EVENT_BUS.post(new DietEvent.ConsumeItemStack(stack, player)).isCanceled();
   }
 }
+//?}

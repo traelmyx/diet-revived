@@ -4,11 +4,11 @@ license="LGPL-3.0-or-later"
 issueTrackerURL="https://github.com/traelmyx/diet-revived/issues"
 
 [[mods]]
-modId="diet"
+modId="${id}"
 version="${version}"
-displayName="Diet Revived"
+displayName="${name}"
 displayURL="https://github.com/traelmyx/diet-revived"
-logoFile="diet_icon.png"
+${logo_key}="diet_icon.png"
 authors="C4 (original), traelmyx (port)"
 credits="Based on Diet by C4 / Illusive Soulworks"
 description='''
@@ -23,13 +23,13 @@ config="diet.mixins.json"
 [[dependencies.diet]]
 modId="neoforge"
 type="required"
-versionRange="[21.1.0,)"
+versionRange="[${neoforge_major},)"
 ordering="NONE"
 side="BOTH"
 
 [[dependencies.diet]]
 modId="minecraft"
 type="required"
-versionRange="[1.21.1,1.21.2)"
+versionRange="${mc_dep}"
 ordering="NONE"
 side="BOTH"

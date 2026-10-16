@@ -18,6 +18,7 @@
 
 package com.illusivesoulworks.diet.common.config;
 
+//? if neoforge {
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.config.ModConfig;
@@ -36,3 +37,4 @@ public class DietConfigLoader {
     });
   }
 }
+//?}

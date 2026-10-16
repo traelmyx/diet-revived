@@ -17,6 +17,7 @@
 
 package com.illusivesoulworks.diet.common.util;
 
+//? if neoforge {
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,3 +65,4 @@ public class DietOverride {
     }
   }
 }
+//?}

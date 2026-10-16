@@ -17,6 +17,7 @@
 
 package com.illusivesoulworks.diet.client;
 
+//? if neoforge {
 import com.illusivesoulworks.diet.DietConstants;
 import com.illusivesoulworks.diet.client.screen.DynamicButton;
 import com.illusivesoulworks.diet.common.integration.CuriosIntegration;
@@ -74,3 +75,4 @@ public class DietClientEventsListener {
     DietClientEvents.renderEffectsTooltip(evt.getScreen(), evt.getGuiGraphics());
   }
 }
+//?}

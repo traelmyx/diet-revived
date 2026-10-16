@@ -18,6 +18,7 @@
 
 package com.illusivesoulworks.diet.common.capability;
 
+//? if neoforge {
 import com.illusivesoulworks.diet.DietConstants;
 import com.illusivesoulworks.diet.api.type.IDietTracker;
 import java.util.Optional;
@@ -60,3 +61,4 @@ public class DietCapability {
     return Optional.of(player.getData(DIET_TRACKER));
   }
 }
+//?}

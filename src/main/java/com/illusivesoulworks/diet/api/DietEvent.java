@@ -17,6 +17,7 @@
 
 package com.illusivesoulworks.diet.api;
 
+//? if neoforge {
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
@@ -57,3 +58,4 @@ public class DietEvent extends PlayerEvent {
     }
   }
 }
+//?}

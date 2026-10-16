@@ -18,6 +18,7 @@
 
 package com.illusivesoulworks.diet.common.network;
 
+//? if neoforge {
 import com.illusivesoulworks.diet.DietConstants;
 import com.illusivesoulworks.diet.common.network.server.SPacketActivate;
 import com.illusivesoulworks.diet.common.network.server.SPacketDiet;
@@ -87,3 +88,4 @@ public class DietForgeNetwork {
     }
   }
 }
+//?}

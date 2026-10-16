@@ -17,6 +17,7 @@
 
 package com.illusivesoulworks.diet.platform.services;
 
+//? if neoforge {
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 
 public class ForgeClientService implements IClientService {
@@ -31,3 +32,4 @@ public class ForgeClientService implements IClientService {
     return containerScreen.getGuiTop();
   }
 }
+//?}

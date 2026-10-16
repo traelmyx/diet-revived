@@ -35,7 +35,6 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 import java.util.function.BiFunction;
-import com.illusivesoulworks.diet.DietForgeMod;
 import net.minecraft.core.Holder;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.RangedAttribute;
@@ -46,6 +45,9 @@ import net.minecraft.world.item.ItemStack;
 import org.apache.commons.lang3.tuple.Triple;
 
 public class DietApiImpl extends DietApi {
+
+  // set by the loader entry point once the attribute is registered
+  public static Holder<Attribute> naturalRegeneration;
 
 
   @Override
@@ -178,6 +180,6 @@ public class DietApiImpl extends DietApi {
 
   @Override
   public Holder<Attribute> getNaturalRegeneration() {
-    return DietForgeMod.NATURAL_REGEN;
+    return naturalRegeneration;
   }
 }
