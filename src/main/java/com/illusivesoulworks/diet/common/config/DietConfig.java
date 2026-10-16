@@ -134,7 +134,7 @@ public class DietConfig {
     }
 
     private final Map<Item, Float> overrideMap = new HashMap<>();
-    boolean initializedFoodOverrides = false;
+    public boolean initializedFoodOverrides = false;
 
     public Float getFoodOverride(Item item) {
 
