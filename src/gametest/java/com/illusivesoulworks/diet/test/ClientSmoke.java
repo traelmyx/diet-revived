@@ -59,6 +59,7 @@ public final class ClientSmoke {
                             fail("mod loading errors");
                         }
                         ticks = 0;
+                        mc.options.tutorialStep = net.minecraft.client.tutorial.TutorialSteps.NONE;
                         createWorld(mc);
                         stage = 1;
                     }
@@ -129,9 +130,11 @@ public final class ClientSmoke {
             var diet = DietCapability.get(player).orElseThrow();
             // Diet only counts food that actually changed the hunger bar
             player.getFoodData().setFoodLevel(6);
-            diet.consume(new ItemStack(Items.APPLE));
-            diet.consume(new ItemStack(Items.BREAD));
-            diet.consume(new ItemStack(Items.COOKED_BEEF));
+            for (var item : new net.minecraft.world.item.Item[] {Items.APPLE, Items.APPLE, Items.APPLE, Items.APPLE, Items.APPLE,
+                    Items.APPLE, Items.BREAD, Items.BREAD, Items.BREAD, Items.COOKED_BEEF, Items.COOKED_BEEF, Items.COOKED_BEEF,
+                    Items.COOKED_BEEF, Items.COOKED_BEEF, Items.COOKED_BEEF, Items.COOKED_BEEF, Items.CARROT, Items.CARROT, Items.COOKIE}) {
+                diet.consume(new ItemStack(item));
+            }
             diet.sync();
         });
     }
