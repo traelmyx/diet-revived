@@ -41,9 +41,11 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.minecraft.commands.synchronization.SingletonArgumentInfo;
+import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.packs.PackType;
+import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.RangedAttribute;
 import net.neoforged.fml.config.ModConfig;
 
@@ -51,9 +53,7 @@ public class DietFabricMod implements ModInitializer {
 
   @Override
   public void onInitialize() {
-    DietApiImpl.naturalRegeneration = Registry.registerForHolder(BuiltInRegistries.ATTRIBUTE,
-        DietCommonMod.resource("natural_regeneration"),
-        new RangedAttribute("diet.naturalRegeneration", 1.0d, 0.0d, 2.0d).setSyncable(true));
+    naturalRegeneration();
     NeoForgeConfigRegistry.INSTANCE.register(DietConstants.MOD_ID, ModConfig.Type.CLIENT, DietConfig.CLIENT_SPEC);
     NeoForgeConfigRegistry.INSTANCE.register(DietConstants.MOD_ID, ModConfig.Type.SERVER, DietConfig.SERVER_SPEC);
     NeoForgeModConfigEvents.loading(DietConstants.MOD_ID).register(config -> resetOverrides(config));
@@ -85,6 +85,17 @@ public class DietFabricMod implements ModInitializer {
         (oldPlayer, newPlayer, alive) -> FabricDietData.get(newPlayer).sync());
     ServerEntityWorldChangeEvents.AFTER_PLAYER_CHANGE_WORLD.register(
         (player, origin, destination) -> FabricDietData.get(player).sync());
+  }
+
+  // the player's attributes can be built before this mod initializes, so register on first use
+  public static synchronized Holder<Attribute> naturalRegeneration() {
+
+    if (DietApiImpl.naturalRegeneration == null) {
+      DietApiImpl.naturalRegeneration = Registry.registerForHolder(BuiltInRegistries.ATTRIBUTE,
+          DietCommonMod.resource("natural_regeneration"),
+          new RangedAttribute("diet.naturalRegeneration", 1.0d, 0.0d, 2.0d).setSyncable(true));
+    }
+    return DietApiImpl.naturalRegeneration;
   }
 
   private static void resetOverrides(ModConfig config) {

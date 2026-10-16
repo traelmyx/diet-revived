@@ -18,7 +18,7 @@
 package com.illusivesoulworks.diet.mixin.fabric;
 
 //? if fabric {
-/*import com.illusivesoulworks.diet.api.DietApi;
+/*import com.illusivesoulworks.diet.fabric.DietFabricMod;
 import com.illusivesoulworks.diet.fabric.FabricDietData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.player.Player;
@@ -33,7 +33,7 @@ public class FabricMixinPlayer {
 
   @Inject(at = @At("RETURN"), method = "createAttributes")
   private static void diet$createAttributes(CallbackInfoReturnable<AttributeSupplier.Builder> cir) {
-    cir.getReturnValue().add(DietApi.getInstance().getNaturalRegeneration());
+    cir.getReturnValue().add(DietFabricMod.naturalRegeneration());
   }
 
   @Inject(at = @At("TAIL"), method = "tick")
