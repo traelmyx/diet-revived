@@ -96,9 +96,10 @@ public class DietScreen extends Screen {
 
   @Override
   public void render(@Nonnull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+    // 1.21 draws the background inside super.render, so the diet bars go on top of it
+    super.render(guiGraphics, mouseX, mouseY, partialTicks);
     this.renderForeground(guiGraphics, mouseX, mouseY);
     this.renderTitle(guiGraphics, mouseX, mouseY);
-    super.render(guiGraphics, mouseX, mouseY, partialTicks);
   }
 
   public void renderTitle(GuiGraphics guiGraphics, int mouseX, int mouseY) {

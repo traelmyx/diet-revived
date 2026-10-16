@@ -127,6 +127,8 @@ public final class ClientSmoke {
         server.execute(() -> {
             var player = server.getPlayerList().getPlayers().get(0);
             var diet = DietCapability.get(player).orElseThrow();
+            // Diet only counts food that actually changed the hunger bar
+            player.getFoodData().setFoodLevel(6);
             diet.consume(new ItemStack(Items.APPLE));
             diet.consume(new ItemStack(Items.BREAD));
             diet.consume(new ItemStack(Items.COOKED_BEEF));
