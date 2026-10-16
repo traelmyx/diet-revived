@@ -1,4 +1,4 @@
-# Diet Reborn
+# Diet Revived
 
 Unofficial port of [Diet](https://github.com/illusivesoulworks/diet) by C4 to NeoForge 1.21.1.
 

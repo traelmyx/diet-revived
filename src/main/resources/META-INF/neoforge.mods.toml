@@ -1,13 +1,13 @@
 modLoader="javafml"
 loaderVersion="[4,)"
 license="LGPL-3.0-or-later"
-issueTrackerURL="https://github.com/traelmyx/diet-reborn/issues"
+issueTrackerURL="https://github.com/traelmyx/diet-revived/issues"
 
 [[mods]]
 modId="diet"
 version="${version}"
-displayName="Diet Reborn"
-displayURL="https://github.com/traelmyx/diet-reborn"
+displayName="Diet Revived"
+displayURL="https://github.com/traelmyx/diet-revived"
 logoFile="diet_icon.png"
 authors="C4 (original), traelmyx (port)"
 credits="Based on Diet by C4 / Illusive Soulworks"
