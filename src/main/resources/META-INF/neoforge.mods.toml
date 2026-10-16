@@ -1,0 +1,35 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="LGPL-3.0-or-later"
+issueTrackerURL="https://github.com/traelmyx/diet-reborn/issues"
+
+[[mods]]
+modId="diet"
+version="${version}"
+displayName="Diet Reborn"
+displayURL="https://github.com/traelmyx/diet-reborn"
+logoFile="diet_icon.png"
+authors="C4 (original), traelmyx (port)"
+credits="Based on Diet by C4 / Illusive Soulworks"
+description='''
+Food groups and nutrition. Based on Diet by C4.
+'''
+
+
+
+[[mixins]]
+config="diet.mixins.json"
+
+[[dependencies.diet]]
+modId="neoforge"
+type="required"
+versionRange="[21.1.0,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.diet]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1,1.21.2)"
+ordering="NONE"
+side="BOTH"
